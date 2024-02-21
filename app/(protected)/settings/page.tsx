@@ -14,7 +14,7 @@ const Settings = async () => {
           "use server";
           await signOut();
         }}>
-        <button type="submit"> Sign Out</button>
+        <button type="submit"> Sign Out </button>
       </form>
     </div>
   );
