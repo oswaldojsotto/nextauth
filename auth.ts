@@ -28,6 +28,8 @@ export const {
   callbacks: {
     async signIn({ user, account }) {
       //allow sign in w/o mail confirmation
+      console.log({ user, account });
+
       if (account?.provider !== "credentials") return true;
 
       if (!user || !user.id) {
