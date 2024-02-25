@@ -81,6 +81,8 @@ export const {
       if (!existingUser) return token;
 
       token.role = existingUser.role;
+      token.email = existingUser.email;
+      token.name = existingUser.name;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
