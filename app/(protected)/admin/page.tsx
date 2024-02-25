@@ -35,13 +35,15 @@ const AdminPage = () => {
         <RoleGate allowedRole={UserRole.ADMIN}>
           <FormSucess message="This message can only be seen by an Admin" />
         </RoleGate>
-        <div className="w-full shadow-md py-4 px-4 flex justify-between gap-8">
-          <p className="mt-1">Admin only API Route</p>
-          <Button onClick={onApiRouteClick}>Click to test</Button>
-        </div>
-        <div className="w-full shadow-md py-4 px-4 flex justify-between gap-8">
-          <p className="mt-1">Admin only Server action</p>
-          <Button onClick={onServerActionClick}>Click to test</Button>
+        <div className="flex flex-col justify-center">
+          <div className="w-full shadow-md py-2 px-4 flex justify-between gap-8">
+            <p className="mt-1">Admin only API Route</p>
+            <Button onClick={onApiRouteClick}>Click to test</Button>
+          </div>
+          <div className="w-full shadow-md py-2 px-4 flex justify-between gap-8">
+            <p className="mt-1">Admin only Server action</p>
+            <Button onClick={onServerActionClick}>Click to test</Button>
+          </div>
         </div>
       </CardContent>
     </Card>
