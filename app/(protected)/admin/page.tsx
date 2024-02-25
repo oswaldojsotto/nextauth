@@ -1,9 +1,9 @@
 "use client";
 import { admin } from "@/actions/admin";
 import RoleGate from "@/components/auth/role-gate";
+import { FormSucess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useCurrentRole } from "@/hooks/useCurrentRole";
 import { UserRole } from "@prisma/client";
 import React from "react";
 import { toast } from "sonner";
@@ -33,7 +33,7 @@ const AdminPage = () => {
       <CardHeader className="text-xl font-semibold"> 🗝️ Admin</CardHeader>
       <CardContent>
         <RoleGate allowedRole={UserRole.ADMIN}>
-          <div> ✅ This message can only be seen by an Admin</div>
+          <FormSucess message="This message can only be seen by an Admin" />
         </RoleGate>
         <div className="w-full shadow-md py-4 px-4 flex justify-between gap-8">
           <p className="mt-1">Admin only API Route</p>
