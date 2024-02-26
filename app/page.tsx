@@ -14,7 +14,7 @@ export default function Home() {
         🔐NextAuth
       </h3>
       <p className="text-white ">An authentication service</p>
-      <LoginButton>
+      <LoginButton mode="modal" asChild>
         <Button variant="secondary" size="lg">
           Sign in
         </Button>
