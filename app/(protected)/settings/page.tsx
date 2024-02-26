@@ -113,7 +113,7 @@ const Settings = () => {
                           </FormControl>
                           <SelectContent>
                             <SelectItem
-                              className="cursor-pointer"
+                              className="cursor-pointer hover:bg-red-200"
                               value={UserRole.ADMIN}>
                               Admin
                             </SelectItem>
