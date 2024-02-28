@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/select";
 import { UserRole } from "@prisma/client";
 import { Switch } from "@/components/ui/switch";
+import { toast } from "sonner";
 
 const Settings = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -54,12 +55,14 @@ const Settings = () => {
       settings(values)
         .then(data => {
           if (data.error) {
-            setError(data.error);
+            // setError(data.error);
+            toast(data.error);
           }
 
           if (data.success) {
             update();
-            setSuccess(data.success);
+            // setSuccess(data.success);
+            toast(data.success);
             setError("");
           }
         })
@@ -70,13 +73,13 @@ const Settings = () => {
   };
 
   return (
-    <div className="w-[90%]">
+    <div className="w-[90%] ">
       <Card className="w-full">
-        <CardHeader className="text-xl font-semibold"> ⚙️ Settings </CardHeader>
-        <CardContent>
+        <CardHeader className="text-xl font-semibold ">⚙️ Settings </CardHeader>
+        <CardContent className="max-h-80 overflow-y-scroll rounded-none scroll-none overflow-x-hidden">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="flex justify-start w-full gap-16">
+              <div className="justify-start w-full gap-16 md:flex">
                 <div className="flex flex-col gap-4 min-w-[18rem]">
                   <FormField
                     control={form.control}
@@ -214,13 +217,19 @@ const Settings = () => {
               <div className="my-4">
                 <FormError message={error} />
                 <FormSucess message={success} />
-                <Button className="mt-4" disabled={isPending} type="submit">
-                  Save
-                </Button>
               </div>
             </form>
           </Form>
         </CardContent>
+        <div className="mx-8 my-8">
+          <Button
+            className="mt-4"
+            disabled={isPending}
+            type="button"
+            onClick={form.handleSubmit(onSubmit)}>
+            Save
+          </Button>
+        </div>
       </Card>
     </div>
   );

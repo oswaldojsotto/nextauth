@@ -1,34 +1,35 @@
 "use client";
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import React, { useState } from "react";
 import UserButton from "@/components/auth/user-button";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ButtonSet } from "./button-set";
 
 const Navbar = () => {
-  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
   return (
     <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl w-[90%] m-4 px-8 shadow-md">
-      <div className="w-full justify-start flex gap-x-2 ">
-        <Button
-          asChild
-          variant={pathname === "/server" ? "default" : "outline"}>
-          <Link href="/server">Server</Link>
-        </Button>
-        <Button
-          asChild
-          variant={pathname === "/client" ? "default" : "outline"}>
-          <Link href="/client">Client</Link>
-        </Button>
-        <Button asChild variant={pathname === "/admin" ? "default" : "outline"}>
-          <Link href="/admin">Admin</Link>
-        </Button>
-        <Button
-          asChild
-          variant={pathname === "/settings" ? "default" : "outline"}>
-          <Link href="/settings">Settings</Link>
-        </Button>
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger>
+          <HamburgerMenuIcon
+            className="h-6 w-6 md:hidden"
+            onClick={() => setOpen(true)}
+          />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-40 align-end">
+          <DropdownMenuItem>
+            <ButtonSet layout="vertical" setOpen={setOpen} />
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <div className="hidden md:flex">
+        <ButtonSet setOpen={setOpen} />
       </div>
       <div>
         <UserButton />
